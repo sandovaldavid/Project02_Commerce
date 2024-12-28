@@ -5,13 +5,13 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('auctions', '0013_watchlist'),
+        ("auctions", "0013_watchlist"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='watchlist',
-            name='active',
+            model_name="watchlist",
+            name="active",
             field=models.BooleanField(default=False),
         ),
     ]

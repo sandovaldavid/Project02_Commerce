@@ -5,13 +5,13 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('auctions', '0006_alter_listing_title'),
+        ("auctions", "0006_alter_listing_title"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='listing',
-            name='title',
+            model_name="listing",
+            name="title",
             field=models.CharField(blank=True, max_length=64),
         ),
     ]

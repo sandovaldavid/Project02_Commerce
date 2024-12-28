@@ -9,26 +9,26 @@ from .models import Listing, Bid, Comment
 class ListingForm(forms.ModelForm):
     CATEGORY_CHOICES = [
         # ('value', 'display_name')
-        ('Fashion', 'Fashion'),
-        ('Toys', 'Toys'),
-        ('Electronics', 'Electronics'),
-        ('Home', 'Home'),
-        ('Books', 'Books'),
-        ('Other', 'Other'),
+        ("Fashion", "Fashion"),
+        ("Toys", "Toys"),
+        ("Electronics", "Electronics"),
+        ("Home", "Home"),
+        ("Books", "Books"),
+        ("Other", "Other"),
     ]
     category = forms.ChoiceField(choices=CATEGORY_CHOICES, widget=forms.Select)
 
     class Meta:
         model = Listing
-        fields = ['title', 'description', 'starting_bid', 'image', 'category']
+        fields = ["title", "description", "starting_bid", "image", "category"]
         error_messages = {
-            'image': {
-                'invalid': 'Please enter a valid URL (https//).',
+            "image": {
+                "invalid": "Please enter a valid URL (https//).",
             }
         }
 
     def clean_title(self):
-        title = self.cleaned_data.get('title')
+        title = self.cleaned_data.get("title")
         if title == "":
             raise forms.ValidationError("Title cannot be empty.")
         if Listing.objects.filter(title=title).exists():
@@ -36,13 +36,13 @@ class ListingForm(forms.ModelForm):
         return title
 
     def clean_description(self):
-        description = self.cleaned_data.get('description')
+        description = self.cleaned_data.get("description")
         if description == "":
             raise forms.ValidationError("Description cannot be empty.")
         return description
 
     def clean_starting_bid(self):
-        starting_bid = self.cleaned_data.get('starting_bid')
+        starting_bid = self.cleaned_data.get("starting_bid")
         if starting_bid is None:
             raise forms.ValidationError("Starting bid cannot be empty.")
         if starting_bid < 0:
@@ -50,7 +50,7 @@ class ListingForm(forms.ModelForm):
         return starting_bid
 
     def clean_image(self):
-        url = self.cleaned_data.get('image')
+        url = self.cleaned_data.get("image")
         if url:
             url_pattern = r"https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
             if not re.match(url_pattern, url):
@@ -61,7 +61,7 @@ class ListingForm(forms.ModelForm):
 class BidForm(forms.ModelForm):
     class Meta:
         model = Bid
-        fields = ['amount']
+        fields = ["amount"]
 
     def clean_amount(self):
         bid_value = self.cleaned_data.get("amount")
@@ -76,22 +76,24 @@ class BidForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['text']
+        fields = ["text"]
         widgets = {
-            'text': forms.Textarea(attrs={
-                'class': 'form-control',
-                'rows': 3,
-                'placeholder': 'Write your comment here...',
-                'maxlength': '500',
-                'style': 'resize: none;'
-            }),
+            "text": forms.Textarea(
+                attrs={
+                    "class": "form-control",
+                    "rows": 3,
+                    "placeholder": "Write your comment here...",
+                    "maxlength": "500",
+                    "style": "resize: none;",
+                }
+            ),
         }
         labels = {
-            'text': 'Add a comment:',
+            "text": "Add a comment:",
         }
 
     def clean_text(self):
-        text = self.cleaned_data.get('text')
+        text = self.cleaned_data.get("text")
         if not text or text.strip() == "":
             raise forms.ValidationError("Comment cannot be empty.")
         if len(text) < 5:

@@ -4,27 +4,36 @@ from .models import Listing, Bid, Comment, Watchlist, User
 
 
 # Register your models here.
-@admin.action(description='Make active')
+@admin.action(description="Make active")
 def make_active(modeladmin, request, queryset):
     queryset.update(active=True)
 
 
-@admin.action(description='Make inactive')
+@admin.action(description="Make inactive")
 def make_inactive(modeladmin, request, queryset):
     queryset.update(active=False)
 
 
 class ListingAdmin(admin.ModelAdmin):
-    list_display = ("title", "starting_bid", "current_bid", "category", "created", "user", "active", "winner")
+    list_display = (
+        "title",
+        "starting_bid",
+        "current_bid",
+        "category",
+        "created",
+        "user",
+        "active",
+        "winner",
+    )
     list_filter = ("category", "active")
-    search_fields = ['user__username', 'title']
+    search_fields = ["user__username", "title"]
     actions = [make_active, make_inactive]
 
 
 class BidAdmin(admin.ModelAdmin):
-    search_fields = ['user__username', 'listing__title']
-    list_display = ['amount', 'user', 'listing']
-    list_filter = ['listing__title']
+    search_fields = ["user__username", "listing__title"]
+    list_display = ["amount", "user", "listing"]
+    list_filter = ["listing__title"]
 
 
 class CommentAdmin(admin.ModelAdmin):

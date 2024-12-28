@@ -5,13 +5,13 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('auctions', '0009_alter_listing_image'),
+        ("auctions", "0009_alter_listing_image"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='listing',
-            name='image',
+            model_name="listing",
+            name="image",
             field=models.URLField(blank=True),
         ),
     ]

@@ -6,4 +6,4 @@ def watchlist_count(request):
         count = Watchlist.objects.filter(user=request.user, active=True).count()
     else:
         count = 0
-    return {'watchlist_count': count}
+    return {"watchlist_count": count}

@@ -5,13 +5,16 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('auctions', '0008_alter_listing_description_alter_listing_starting_bid'),
+        ("auctions", "0008_alter_listing_description_alter_listing_starting_bid"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='listing',
-            name='image',
-            field=models.URLField(blank=True, error_messages={'invalid': 'Please enter a valid URL (https//).'}),
+            model_name="listing",
+            name="image",
+            field=models.URLField(
+                blank=True,
+                error_messages={"invalid": "Please enter a valid URL (https//)."},
+            ),
         ),
     ]

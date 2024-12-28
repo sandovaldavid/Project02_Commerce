@@ -5,18 +5,18 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('auctions', '0007_alter_listing_title'),
+        ("auctions", "0007_alter_listing_title"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='listing',
-            name='description',
+            model_name="listing",
+            name="description",
             field=models.TextField(blank=True),
         ),
         migrations.AlterField(
-            model_name='listing',
-            name='starting_bid',
+            model_name="listing",
+            name="starting_bid",
             field=models.DecimalField(blank=True, decimal_places=2, max_digits=10),
         ),
     ]

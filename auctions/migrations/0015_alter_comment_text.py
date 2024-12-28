@@ -5,13 +5,13 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('auctions', '0014_watchlist_active'),
+        ("auctions", "0014_watchlist_active"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='comment',
-            name='text',
+            model_name="comment",
+            name="text",
             field=models.TextField(blank=True),
         ),
     ]
